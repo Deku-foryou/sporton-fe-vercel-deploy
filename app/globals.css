@@ -15,6 +15,9 @@
   --font-poppins: var(--font-poppins);
 }
 
+html{
+  
+}
 *{
   @apply font-poppins;
 }
