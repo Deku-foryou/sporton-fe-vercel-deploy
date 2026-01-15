@@ -33,7 +33,7 @@ const categoryList = [
 
 const CategoriesSection = () => {
   return (
-    <section id="category-section" className="container mx-auto pb-20" >
+    <section id="category-section" className="container mx-auto pb-20">
       <div className="flex justify-between">
         <h2 className="font-bold text-2xl">Browse By Categories</h2>
         <Link href="#" className="text-primary flex gap-2 font-medium ">
@@ -43,25 +43,23 @@ const CategoriesSection = () => {
       </div>
       <div className="grid grid-cols-6 gap-12">
         {categoryList.map((category, index) => (
-  <div
-    className="rounded-lg bg-gradient-to-r from-[#f1f1f1] to-[#f7f7f7] w-full aspect-square flex flex-col justify-center items-center gap-4 hover:scale-105 transition-transform duration-300 mt-5 md:mt-5"
-    key={index}
-  >
-   
-    
-    <Image
-      src={`/images/categories/${category.imgUrl}`}
-      width={86}
-      height={86} 
-      alt={category.name}
-      className="object-contain" 
-    />
-    
-    <div className="text-primary md:font-medium font-medium  md:text-lg text-[10px] text-center capitalize">
-      {category.name}
-    </div>
-  </div>
-))}
+          <div
+            className="rounded-lg bg-gradient-to-r from-[#f1f1f1] to-[#f7f7f7] w-full aspect-square flex flex-col justify-center items-center gap-4 hover:scale-105 transition-transform duration-300 mt-5 md:mt-5"
+            key={index}
+          >
+            <Image
+              src={`/images/categories/${category.imgUrl}`}
+              width={86}
+              height={86}
+              alt={category.name}
+              className="object-contain"
+            />
+
+            <div className="text-primary md:font-medium font-medium  md:text-lg text-[10px] text-center capitalize">
+              {category.name}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

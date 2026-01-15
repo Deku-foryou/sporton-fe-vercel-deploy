@@ -63,7 +63,11 @@ const ProductsSection = () => {
       </h2>
       <div className="grid grid-cols-4 gap-5">
         {prductlist.map((product, index) => (
-          <Link href="#" key={index} className="p-1.5 bg-white hover:shadow-xl duration-300">
+          <Link
+            href="#"
+            key={index}
+            className="p-1.5 bg-white hover:shadow-xl duration-300"
+          >
             <div className="bg-primary-light aspect-square w-full flex justify-center items-center relative">
               <Image
                 src={`/images/products/${product.imgUrl}`}
@@ -73,20 +77,19 @@ const ProductsSection = () => {
                 className="aspect-square oobject-contain"
               />
               <button className=" text-white bg-primary w-10 h-10 p-2! absolute right-3 top-3">
-               <FiPlus className="" size={24}/>
+                <FiPlus className="" size={24} />
               </button>
             </div>
             <h3 className="font-medium text-lg mb-1.5 mt-4">{product.name}</h3>
             <div className="flex justify-between mb-5">
-               <div className="text-gray-500">{product.category}</div>
-               <div className="font-medium text-primary">
-                  {Intl.NumberFormat("id-ID", {
-                     style: "currency",
-                     currency: "IDR",
-                     maximumFractionDigits: 3,
-
-                  }).format(product.price)}
-               </div>
+              <div className="text-gray-500">{product.category}</div>
+              <div className="font-medium text-primary">
+                {Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                  maximumFractionDigits: 3,
+                }).format(product.price)}
+              </div>
             </div>
           </Link>
         ))}

@@ -1,13 +1,15 @@
+import React from "react";
+
 type TButtonProps = {
   children: React.ReactNode;
-  classname?: string;
+  className?: string;
   variant?: "primary" | "dark" | "ghost";
   size?: "small" | "normal";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   children,
-  classname,
+  className,
   variant = "primary",
   size = "normal",
   ...props
@@ -28,7 +30,7 @@ const Button = ({
 
   return (
     <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${classname}`}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}
