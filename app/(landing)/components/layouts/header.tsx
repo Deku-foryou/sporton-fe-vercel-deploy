@@ -1,12 +1,12 @@
-"use client"; // <--- WAJIB ADA: Biar bisa pakai useState & onClick
+"use client"; 
 
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FiSearch, FiShoppingBag, FiMenu, FiX } from "react-icons/fi"; // Tambah FiX untuk icon close
+import { FiSearch, FiShoppingBag, FiMenu, FiX } from "react-icons/fi";
+import CartPopup from "../ui/cart-popup";
 
 const Header = () => {
-  // State untuk menyimpan status menu (false = tertutup, true = terbuka)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -23,7 +23,6 @@ const Header = () => {
           />
         </div>
 
-        {/* NAVIGASI DESKTOP (Hidden di HP) */}
         <nav className="hidden md:flex md:gap-10 lg:gap-44 font-medium transition-all">
           <Link
             href="#"
@@ -39,8 +38,7 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* ICON KANAN */}
-        <div className="flex gap-4 md:gap-10 items-center">
+        <div className=" relative flex gap-4 md:gap-10 items-center">
           <FiSearch className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
 
           <div className="relative cursor-pointer">
@@ -49,23 +47,18 @@ const Header = () => {
               3
             </div>
           </div>
-
-          {/* TOMBOL HAMBURGER (Muncul cuma di HP) */}
+          <CartPopup/>
           <button
             className="md:hidden text-2xl focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)} // Logic: Balikkan nilai true/false saat diklik
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {/* Kalau open tampilkan X, kalau close tampilkan Menu */}
             {isMenuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
       </div>
 
-      {/* --- MOBILE MENU DROPDOWN --- */}
-      {/* Bagian ini hanya muncul jika isMenuOpen == true */}
       {isMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-lg border-t md:hidden flex flex-col p-5 gap-4 animate-in slide-in-from-top-5 duration-300">
-          {/* Link di Mobile */}
           <Link
             href="#"
             className="font-medium hover:text-primary"
