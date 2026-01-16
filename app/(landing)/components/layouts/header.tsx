@@ -5,9 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiSearch, FiShoppingBag, FiMenu, FiX } from "react-icons/fi";
 import CartPopup from "../ui/cart-popup";
+import Button from "../ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
 
   return (
     <header className="w-full bg-white sticky top-0 z-50 shadow-sm">
@@ -41,13 +43,15 @@ const Header = () => {
         <div className=" relative flex gap-4 md:gap-10 items-center">
           <FiSearch className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
 
-          <div className="relative cursor-pointer">
-            <FiShoppingBag className="w-5 h-5 md:w-6 md:h-6" />
+          <button className="relative cursor-pointer"
+          onClick={() => setIsCartPopupOpen(!isCartPopupOpen)}
+          >
+            <FiShoppingBag className="w-5 h-5 md:w-6 md:h-6  " />
             <div className="bg-primary rounded-full w-3 h-3 md:w-4 md:h-4 absolute -top-1 -right-1 text-[8px] md:text-[10px] text-white flex items-center justify-center">
               3
             </div>
-          </div>
-          <CartPopup/>
+          </button>
+          {isCartPopupOpen && <CartPopup />}
           <button
             className="md:hidden text-2xl focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
