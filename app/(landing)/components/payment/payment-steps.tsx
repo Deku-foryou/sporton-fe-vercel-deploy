@@ -1,6 +1,8 @@
-import { FiCreditCard } from "react-icons/fi";
+import { FiCheckCircle, FiCreditCard } from "react-icons/fi";
 import CardWithHeader from "../ui/card-with-header";
 import FileUpload from "../ui/file-upload";
+import priceFormatter from "@/app/utils/price-formatter";
+import Button from "../ui/button";
 
 const PaymentSteps = () => {
   return (
@@ -23,6 +25,19 @@ const PaymentSteps = () => {
           </li>
         </ol>
         <FileUpload />
+      </div>
+
+      <div className="border-t border-gray-200 p-4">
+        <div className="flex justify-between font-semibold">
+          <div className="text-sm">Total :</div>
+          <div className="text-primary text-xs ml-auto self-center">
+            {priceFormatter(450000)}
+          </div>
+        </div>
+        <Button variant="dark" className="w-full h-8 mt-4" size="small">
+          <FiCheckCircle size={24} />
+          Upload Receipt & Confirm
+        </Button>
       </div>
     </CardWithHeader>
   );
