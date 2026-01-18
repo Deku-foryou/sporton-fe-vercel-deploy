@@ -65,7 +65,7 @@ const ProductsSection = () => {
       <div className="grid grid-cols-4 gap-5">
         {prductlist.map((product, index) => (
           <Link
-            href="#"
+            href={`/product/${product.name}`}
             key={index}
             className="p-1.5 bg-white hover:shadow-xl duration-300"
           >
