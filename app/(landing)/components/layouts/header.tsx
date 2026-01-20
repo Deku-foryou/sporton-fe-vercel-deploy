@@ -6,10 +6,12 @@ import Link from "next/link";
 import { FiSearch, FiShoppingBag, FiMenu, FiX } from "react-icons/fi";
 import CartPopup from "../ui/cart-popup";
 import Button from "../ui/button";
+import { useCartStore } from "@/app/hooks/use-cart-store";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
+  const { items } = useCartStore();
 
   return (
     <header className="w-full bg-white sticky top-0 z-50 shadow-sm">
@@ -49,9 +51,13 @@ const Header = () => {
             onClick={() => setIsCartPopupOpen(!isCartPopupOpen)}
           >
             <FiShoppingBag className="w-5 h-5 md:w-6 md:h-6  " />
-            <div className="bg-primary rounded-full w-3 h-3 md:w-4 md:h-4 absolute -top-1 -right-1 text-[8px] md:text-[10px] text-white flex items-center justify-center">
-              3
+            {items.length ? (
+              <div className="bg-primary rounded-full w-3 h-3 md:w-4 md:h-4 absolute -top-1 -right-1 text-[8px] md:text-[10px] text-white flex items-center justify-center">
+              {items.length}
             </div>
+            ) : (
+              <></>
+            )}
           </button>
           {isCartPopupOpen && <CartPopup />}
           <button

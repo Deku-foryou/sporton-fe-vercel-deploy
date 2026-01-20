@@ -1,16 +1,27 @@
+"use client";
+
+import { useCartStore } from "@/app/hooks/use-cart-store";
 import { getImageUrl } from "@/app/lib/api";
 import { Product } from "@/app/types";
 import priceFormatter from "@/app/utils/price-formatter";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import { FiPlus } from "react-icons/fi";
-
 
 type TProductsProps = {
   products: Product[];
 };
 
-const ProductsSection = ({products}: TProductsProps) => {
+const ProductsSection = ({ products }: TProductsProps) => {
+  const { addItem } = useCartStore();
+
+  const handleAddtocart = (e: React.MouseEvent, product: Product) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addItem(product);
+  };
+
   return (
     <section id="products-section" className="container mx-auto mt-25 mb-52">
       <h2 className="font-bold italic text-4xl text-center mb-11">
@@ -32,7 +43,10 @@ const ProductsSection = ({products}: TProductsProps) => {
                 className="aspect-square oobject-contain"
                 unoptimized={true}
               />
-              <button className=" text-white bg-primary w-10 h-10 p-2! absolute right-3 top-3">
+              <button
+                className=" text-white bg-primary w-10 h-10 p-2! absolute right-3 top-3"
+                onClick={(e) => handleAddtocart(e, product)}
+              >
                 <FiPlus className="" size={24} />
               </button>
             </div>
