@@ -10,7 +10,11 @@ import Button from "../ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const ProductAction = () => {
+type TProductActionProps ={
+  stock: number;
+};
+
+const ProductAction = ({stock}: TProductActionProps) => {
   const {push} = useRouter();
    const [qty, setQty] = useState(1);
 
@@ -27,7 +31,7 @@ const ProductAction = () => {
 
         <div className="flex flex-col w-9">
           <button className="flex-1 border-b border-gray-500 flex items-center justify-center hover:bg-gray-100 cursor-pointer transition"
-          onClick={() => setQty(qty + 1)}
+          onClick={() => setQty(qty < stock ? qty + 1 : qty)}
           >
             <FiChevronUp size={16} />
           </button>
