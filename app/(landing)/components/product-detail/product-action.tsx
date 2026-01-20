@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   FiArrowRight,
@@ -9,18 +9,26 @@ import {
 import Button from "../ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Product } from "@/app/types";
+import { useCartStore } from "@/app/hooks/use-cart-store";
 
-type TProductActionProps ={
+type TProductActionProps = {
+  product: Product;
   stock: number;
 };
 
-const ProductAction = ({stock}: TProductActionProps) => {
-  const {push} = useRouter();
-   const [qty, setQty] = useState(1);
+const ProductAction = ({product, stock }: TProductActionProps) => {
+  const {addItem} = useCartStore();
+  const { push } = useRouter();
+  const [qty, setQty] = useState(1);
 
-   const checkout = () => {
+  const handleAddToCart =() => {
+    addItem(product, qty)
+  }
 
-   }
+  const handlecheckout = () => {
+    push("/checkout");
+  };
 
   return (
     <div className="flex gap-5 items-stretch w-full">
@@ -30,26 +38,29 @@ const ProductAction = ({stock}: TProductActionProps) => {
         </div>
 
         <div className="flex flex-col w-9">
-          <button className="flex-1 border-b border-gray-500 flex items-center justify-center hover:bg-gray-100 cursor-pointer transition"
-          onClick={() => setQty(qty < stock ? qty + 1 : qty)}
+          <button
+            className="flex-1 border-b border-gray-500 flex items-center justify-center hover:bg-gray-100 cursor-pointer transition"
+            onClick={() => setQty(qty < stock ? qty + 1 : qty)}
           >
             <FiChevronUp size={16} />
           </button>
 
-          <button className="flex-1 flex items-center justify-center hover:bg-gray-100 cursor-pointer transition"
-          onClick={() => setQty(qty > 1 ? qty - 1 : qty)}
+          <button
+            className="flex-1 flex items-center justify-center hover:bg-gray-100 cursor-pointer transition"
+            onClick={() => setQty(qty > 1 ? qty - 1 : qty)}
           >
             <FiChevronDown size={16} />
           </button>
         </div>
       </div>
-      <Button className="px-4 flex-1 whitespace-nowrap flex gap-2 items-center justify-center">
-        <FiShoppingBag size={24} />
+      <Button className="px-4 flex-1 whitespace-nowrap flex gap-2 items-center justify-center" onClick={handleAddToCart}>
+        <FiShoppingBag size={24}  />
         Add to Cart
       </Button>
       <Button
         className="px-4 flex-1 whitespace-nowrap flex gap-2 items-center justify-center"
-        variant="dark" onClick={() => push("/checkout")}
+        variant="dark"
+        onClick={() => push("/checkout")}
       >
         Checkout Now
         <FiArrowRight size={24} />
