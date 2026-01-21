@@ -4,7 +4,7 @@ import priceFormatter from "@/app/utils/price-formatter";
 import { getProductDetail } from "@/app/services/product-service";
 import { getImageUrl } from "@/app/lib/api";
 
-type TPageProps = {
+ export type TPageProps = {
   params: Promise<{ id: string }>;
 };
 
