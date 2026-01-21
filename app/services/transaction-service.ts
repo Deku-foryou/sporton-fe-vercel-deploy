@@ -13,5 +13,5 @@ Promise<Transaction> => {
 };
 
 export const getTransactionById = async (id: string): Promise<Transaction> => {
-  return await fetchAPI<Transaction>(`/transaction/${id}`);
+  return await fetchAPI<Transaction>(`/transactions/${id}`);
 };
