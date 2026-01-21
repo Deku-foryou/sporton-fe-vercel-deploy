@@ -10,7 +10,11 @@ import { useCartStore } from "@/app/hooks/use-cart-store";
 import { getImageEtag } from "next/dist/server/image-optimizer";
 import { getImageUrl } from "@/app/lib/api";
 
-const CartItems = () => {
+type TCartItems = {
+  handlePayment : () => void;
+}
+
+const CartItems = ({handlePayment}: TCartItems) => {
   const { items, removeItem } = useCartStore();
   const { push } = useRouter();
 
@@ -18,7 +22,7 @@ const CartItems = () => {
     (total, item) => total + item.price * item.qty,
     0,
   );
-  const payment = () => {};
+  
 
   return (
     <CardWithHeader title="Cart Items">
@@ -70,7 +74,7 @@ const CartItems = () => {
           variant="dark"
           className="w-full h-8 mt-4"
           size="small"
-          onClick={() => push("/payment")}
+          onClick={handlePayment}
         >
           <FiCreditCard size={24} />
           Proceed to Payment
