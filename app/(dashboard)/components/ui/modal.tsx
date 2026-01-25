@@ -16,7 +16,7 @@ const Modal = ({ isOpen, onClose, title, children }: TModalProps) => {
         className="absolute bg-black/50 backdrop-blur-sm transition-opacity w-full h-full"
         onClick={onClose}
       ></div>
-      <div className="relative bg-white rounded-xl w-full max-w-2xl">
+      <div className="relative bg-white rounded-xl w-full max-w-xl">
         <div className="flex justify-between items-center px-7 py-3 border-b border-gray-200">
           <h3 className="font-semibold text-xl">{title}</h3>
           <button
