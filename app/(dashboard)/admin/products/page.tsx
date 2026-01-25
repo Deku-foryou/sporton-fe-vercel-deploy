@@ -10,17 +10,19 @@ const ProductManagement = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCloseModal = () => {
-    setIsOpen (false)
-  }
+    setIsOpen(false);
+  };
+
   return (
     <div>
-      <div className="flex justify-between tems-center mb-10">
+      <div className="flex justify-between items-center mb-10">
         <div>
           <h1 className="font-bold text-2xl">Product Management</h1>
-          <p className="opacity-50">Manage Your invertory, prices and stock.</p>
+          <p className="opacity-50">Manage your inventory, prices and stock.</p>
         </div>
         <Button className="rounded-lg" onClick={() => setIsOpen(true)}>
           <FiPlus size={24} />
+          Add Product
         </Button>
       </div>
       <ProductTable />
