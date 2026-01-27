@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
     {
       protocol: "https",
       hostname: "be-sporton.agunacourse.com",
-      pathname: "/uploads/**",
+      port: "", // Kosongkan saja
+      pathname: "/**",
     },
   ],
  },
